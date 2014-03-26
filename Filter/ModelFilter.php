@@ -11,10 +11,11 @@
 
 namespace Sonata\DoctrineORMAdminBundle\Filter;
 
+use Application\Sonata\DatagridBundle\ProxyQuery\ProxyQueryInterface;
+
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 use Sonata\CoreBundle\Form\Type\EqualType;
-use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 
 class ModelFilter extends Filter
 {

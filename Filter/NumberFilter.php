@@ -11,8 +11,9 @@
 
 namespace Sonata\DoctrineORMAdminBundle\Filter;
 
+use Application\Sonata\DatagridBundle\ProxyQuery\ProxyQueryInterface;
+
 use Sonata\AdminBundle\Form\Type\Filter\NumberType;
-use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 
 class NumberFilter extends Filter
 {

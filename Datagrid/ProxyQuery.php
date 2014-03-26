@@ -10,21 +10,17 @@
 
 namespace Sonata\DoctrineORMAdminBundle\Datagrid;
 
+use Application\Sonata\DatagridBundle\ProxyQuery\BaseProxyQuery;
+use Application\Sonata\DatagridBundle\ProxyQuery\ProxyQueryInterface;
+
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Query;
-use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 
 /**
  * This class try to unify the query usage with Doctrine
  */
-class ProxyQuery implements ProxyQueryInterface
+class ProxyQuery extends BaseProxyQuery implements ProxyQueryInterface
 {
-    protected $queryBuilder;
-
-    protected $sortBy;
-
-    protected $sortOrder;
-
     protected $parameterUniqueId;
 
     protected $entityJoinAliases;
@@ -34,7 +30,8 @@ class ProxyQuery implements ProxyQueryInterface
      */
     public function __construct($queryBuilder)
     {
-        $this->queryBuilder      = $queryBuilder;
+        parent::__construct($queryBuilder);
+
         $this->uniqueParameterId = 0;
         $this->entityJoinAliases = array();
     }
@@ -119,14 +116,6 @@ class ProxyQuery implements ProxyQueryInterface
     /**
      * {@inheritdoc}
      */
-    public function __call($name, $args)
-    {
-        return call_user_func_array(array($this->queryBuilder, $name), $args);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function __get($name)
     {
         return $this->queryBuilder->$name;
@@ -135,38 +124,14 @@ class ProxyQuery implements ProxyQueryInterface
     /**
      * {@inheritdoc}
      */
-    public function setSortBy($parentAssociationMappings, $fieldMapping)
+    public function setSortBy($sortBy)
     {
-        $alias        = $this->entityJoin($parentAssociationMappings);
-        $this->sortBy = $alias . '.' . $fieldMapping['fieldName'];
+        if (isset($sortBy['parentAssociationMapping']) && isset($sortBy['fieldMapping'])) {
+            $alias        = $this->entityJoin($sortBy['parentAssociationMapping']);
+            $this->sortBy = $alias . '.' . $sortBy['fieldMapping']['fieldName'];
+        }
 
         return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSortBy()
-    {
-        return $this->sortBy;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setSortOrder($sortOrder)
-    {
-        $this->sortOrder = $sortOrder;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSortOrder()
-    {
-        return $this->sortOrder;
     }
 
     /**
@@ -177,22 +142,6 @@ class ProxyQuery implements ProxyQueryInterface
         $query = $this->queryBuilder->getQuery();
 
         return $query->getSingleScalarResult();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function __clone()
-    {
-        $this->queryBuilder = clone $this->queryBuilder;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getQueryBuilder()
-    {
-        return $this->queryBuilder;
     }
 
     /**

@@ -12,7 +12,7 @@
 namespace Sonata\DoctrineORMAdminBundle\Filter;
 
 use Sonata\AdminBundle\Filter\Filter as BaseFilter;
-use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
+use Application\Sonata\DatagridBundle\ProxyQuery\ProxyQueryInterface;
 
 abstract class Filter extends BaseFilter
 {

@@ -11,15 +11,17 @@
 
 namespace Sonata\DoctrineORMAdminBundle\Model;
 
+use Application\Sonata\DatagridBundle\ProxyQuery\ProxyQueryInterface;
+use Application\Sonata\DatagridBundle\Datagrid\DatagridInterface;
+
 use Doctrine\Common\Util\ClassUtils;
 use Doctrine\ORM\EntityManager;
+
 use Sonata\DoctrineORMAdminBundle\Admin\FieldDescription;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 
 use Sonata\AdminBundle\Model\ModelManagerInterface;
 use Sonata\AdminBundle\Admin\FieldDescriptionInterface;
-use Sonata\AdminBundle\Datagrid\DatagridInterface;
-use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\AdminBundle\Exception\ModelManagerException;
 
 use Doctrine\ORM\QueryBuilder;

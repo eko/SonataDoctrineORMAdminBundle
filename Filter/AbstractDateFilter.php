@@ -2,9 +2,10 @@
 
 namespace Sonata\DoctrineORMAdminBundle\Filter;
 
+use Application\Sonata\DatagridBundle\ProxyQuery\ProxyQueryInterface;
+
 use Sonata\AdminBundle\Form\Type\Filter\DateType;
 use Sonata\AdminBundle\Form\Type\Filter\DateRangeType;
-use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 
 abstract class AbstractDateFilter extends Filter
 {

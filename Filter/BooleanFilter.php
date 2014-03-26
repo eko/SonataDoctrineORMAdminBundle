@@ -11,7 +11,8 @@
 
 namespace Sonata\DoctrineORMAdminBundle\Filter;
 
-use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
+use Application\Sonata\DatagridBundle\ProxyQuery\ProxyQueryInterface;
+
 use Sonata\CoreBundle\Form\Type\BooleanType;
 
 class BooleanFilter extends Filter

@@ -11,7 +11,7 @@
 
 namespace Sonata\DoctrineORMAdminBundle\Filter;
 
-use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
+use Application\Sonata\DatagridBundle\ProxyQuery\ProxyQueryInterface;
 
 class CallbackFilter extends Filter
 {

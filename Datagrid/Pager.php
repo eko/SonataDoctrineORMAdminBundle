@@ -11,7 +11,8 @@
 
 namespace Sonata\DoctrineORMAdminBundle\Datagrid;
 
-use Sonata\AdminBundle\Datagrid\Pager as BasePager;
+use Application\Sonata\DatagridBundle\Pager\BasePager;
+
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 
@@ -46,14 +47,6 @@ class Pager extends BasePager
     public function getResults($hydrationMode = Query::HYDRATE_OBJECT)
     {
         return $this->getQuery()->execute(array(), $hydrationMode);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getQuery()
-    {
-        return $this->query;
     }
 
     /**

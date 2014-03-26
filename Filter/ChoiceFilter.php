@@ -11,9 +11,10 @@
 
 namespace Sonata\DoctrineORMAdminBundle\Filter;
 
+use Application\Sonata\DatagridBundle\ProxyQuery\ProxyQueryInterface;
+
 use Doctrine\ORM\QueryBuilder;
 use Sonata\AdminBundle\Form\Type\Filter\ChoiceType;
-use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 
 class ChoiceFilter extends Filter
 {
